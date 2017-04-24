@@ -846,13 +846,6 @@
           //document.writeln(pie3SliceSelector);
           selectedFocalNodeText.style("fill", "DarkBlue");
 
-           // div.transition()   
-           //      .duration(200)    
-           //      .style("opacity", .9);    
-           //  div.html(d.type)  
-           //      .style("left", (d3.event.pageX) + "px")   
-           //      .style("top", (d3.event.pageY - 28) + "px");  
-
         };
 
         var sliceMouseOut = function() {
@@ -1061,7 +1054,9 @@
             .attr("id", function(d, i) {return "pie2-slice" + i; } )
             .attr("color_value", function(d) {return d.data.color; } )
         .attr("class", function(d, i) {
-        var str = d.data.type;
+        var str;
+        if (params == "type") {str = d.data.type;}
+        else if (params == "pace") {str = d.data.pace;}
         var strippedString = str.replace(/ /g, "_")
         return "pie2-" + strippedString; })
             .style("stroke", "White")
@@ -1121,7 +1116,9 @@
             .attr("id", function(d, i) {return "pie3-slice" + i; } )
             .attr("color_value", function(d) {return d.data.color; } )
         .attr("class", function(d, i) {
-        var str = d.data.type;
+        var str;
+        if (params == "type") {str = d.data.type;}
+        else if (params == "pace") {str = d.data.pace;}
         var strippedString = str.replace(/ /g, "_")
         return "pie3-" + strippedString; })
             .attr("stroke-width", "2")
@@ -1170,7 +1167,9 @@
             .attr("id", function(d, i) {return "pie3-node" + i; } )
             .attr("color_value", function(d) {return d.data.color; } )
         .attr("class", function(d, i) {
-        var str = d.data.type;
+        var str;
+        if (params == "type") {str = d.data.type;}
+        else if (params == "pace") {str = d.data.pace;}
         var strippedString = str.replace(/ /g, "_")
         return "nodeText-" + strippedString; })
             .attr("transform", function(d) { //set text's origin to the centroid
