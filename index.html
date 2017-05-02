@@ -345,26 +345,10 @@
     <aside class="clients">
         <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src="img/logos/envato.jpg" class="img-responsive img-centered" alt="">
-                    </a>
+                <div class="col-md-12">
+                <img src="img/gif-maker.gif"/>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src="img/logos/designmodo.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src="img/logos/themeforest.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <a href="#">
-                        <img src="img/logos/creative-market.jpg" class="img-responsive img-centered" alt="">
-                    </a>
-                </div>
+                
             </div>
         </div>
     </aside>
@@ -658,15 +642,16 @@
       ];
 
       var nodeSet = [
-        {id: "N2", name: "", type: "Hot", relName: "Bikram", hlink: "", pace:"fast", description: "done in a hot and humid sauna like room with predefinesd series of poses", routine:"yes"},
-        {id: "N3", name: "", type: "Vigorous", relName: "Power", hlink: "", pace:"fast",description:"an active and athletic type of yoga", routine:"no"},
-        {id: "N4", name: "", type: "Vigorous", relName: "Ashtanga", hlink: "", pace:"fast", description: "vigorous, phyiscally demanding -sequence-style of yoga that links each movement to a breath", routine:"no"},
-        {id: "N5", name: "", type: "Allignment", relName: "Iyengar", hlink: "", pace:"fast", description:"has the nickname Furniture Yoga (Props like blocks, straps, harnesses, and incline boards )", routine:"no"},
-        {id: "N6", name: "", type: "Allignment", relName: "Anusara", hlink: "", pace:"slow", description:"fairly recent, light -hearted", routine:"no"},
-        {id: "N7", name: "", type: "Spiritual", relName: "Kundalini", hlink: "", pace:"slow", description:"Energy flow is directed towards the poses while meditation, breathing techniques, and chanting are incorporated to keep you grounded", routine:"yes"},
-        {id: "N8", name: "", type: "Spiritual", relName: "Jivamukti", hlink: "", pace:"slow", description:"spriritual elements chanting meditation phyiscally intense and include insprational theme", routine:"no"},
-        {id: "N9", name: "", type: "Healing", relName: "Yin", hlink: "", pace:"slow", description:"yoga comes from the Taoist tradition and focuses on passive, seated postures that target the connective tissues in the hips, pelvis and lower spine", routine:"no"},
-      ];
+      
+        {id: "N2", name: "", type: "Hot Yoga", relName: "Bikram Yoga", hlink: "", pace:"fast", description: "Practiced in a hot and humid sauna like room with predefined series of poses.", routine: "yes",benefits:" Flexibility and detoxification.",suitable:" Amateurs. Those who are newer to yoga might like Bikram because of its predictable sequence.",caution:" Avoided by people with heart conditions, blood pressure issues, pregnant women, people taking certain medications, and other health issues."},
+        {id: "N3", name: "", type: "Vigorous Yoga", relName: "Power Yoga", hlink: "", pace:"fast",description:"an active and athletic type of yoga", routine:"no",benefits:" Reviving up your metabolism and resulting in higher calorie burn.",suitable:" Athletes, fitness fanatics.",caution:" Can be strenuous.Balance workout with rest and breathing."},
+        {id: "N4", name: "", type: "Vigorous Yoga", relName: "Ashtanga Yoga", hlink: "", pace:"fast", description: "Vigorous, physically demanding sequence-style of yoga that links each movement to a breath",routine:"yes",benefits:" enter the mind and control breath flow throughout the body while enhancing flexibility, strength and  stamina.",suitable:" People who are athletic and advanced,highly motivated, like structure and enjoy yoga push ups.",caution:" Do not force the pose to happen,take time. Intense feeling in the belly of a muscle is generally fine."},
+        {id: "N5", name: "", type: "Alignment", relName: "Iyengar", hlink: "", pace:"fast", description:"Has the nickname Furniture Yoga (Props like blocks, straps, harnesses, and incline boards )" ,routine:"no",benefits:" Develop flexibility, strength, awareness and stability.",suitable:"  Detail-oriented yogis. If you like to geek out about anatomy, movement and form, you’ll love Iyengar.", caution:"Consult your doctor or a regular health physician and perform the practice that suits you without causing any sort of stress or pressure."},
+        {id: "N6", name: "", type: "Alignment", relName: "Anusara", hlink: "", pace:"slow", description:"Fairly recent, light -hearted", routine:"no", benefits:" Alignment and positivity. Natural flow of energy in the body provides both stability and joyful freedom.",suitable:" beginners as well as advanced",caution:""},
+        {id: "N7", name: "", type: "Spiritual", relName: "Kundalini", hlink: "", pace:"slow", description:"Energy flow is directed towards the poses while meditation, breathing techniques, and chanting are incorporated to keep you grounded",routine:"yes",benefits:" Build sensory awareness, enhance consciousness, and develop spiritual strength.",suitable:" People looking for a spiritual practice.",caution:" One can experience adverse effects as kundalini moves through the body and the nervous system adjusts to this dramatic increase of psychic energy. Therefore it is not advised to activate kundalini without guidance of a qualified teacher and support of a spiritual community."},
+        {id: "N8", name: "", type: "Spiritual", relName: "Jivamukti", hlink: "", pace:"slow", description:"Literally means liberation while living. Includes spriritual elements and inspirational theme while chanting meditation." ,routine:"yes",benefits:"Developing increase in strength, balance and flexibility, detoxifying the body and improving circulation, and a decrease in stress and toxins.",suitable:" People with imagination, a sense of adventure and the courage to change. Also for one who wants to be absolutely free and to live their life in ways that matter.",caution:""},
+        {id: "N9", name: "", type: "Healing", relName: "Yin Yoga", hlink: "", pace:"slow", description:"Comes from the Taoist tradition and focuses on passive, seated postures that target the connective tissues in the hips, pelvis and lower spine.",routine:"yes",benefits:"Learn the basics of meditation and stilling the mind, increase flexibility and encourage a feeling of release and letting go",suitable:" Athletic types who need to release tension in overworked joints, and it is also good for those who need to relax, who need to stretch and unwind.",caution:" Not recommended for people who are super flexible (you might overdo it in some poses) or anyone who has a connective tissue disorder"},
+      ];
 
 
       function drawRadialHubAndSpoke( drawingName, focalNode, nodeSet, selectString, colors, margin, outerRadius, innerRadius, sortArcs, params) {
@@ -1092,7 +1077,8 @@
                     .attr("height", "500").attr("width", "300").attr("x", -1*(width/2 - 800)).attr("y", (-height/9.5*3))
                     .append('xhtml:div').style("visibility", "visible") ;        
                 infoBox1.append('p').text(d.data.description);
-                infoBox1.append('p').html("<u>Benefit:</u>").append("div").text(d.data.benefit);
+                infoBox1.append('p').html("<u>Benefits:</u>").append("div").text(d.data.benefits);
+                infoBox1.append('p').html("<u>Suitable for:</u>").append("div").text(d.data.suitable);
                 infoBox1.append('p').html("<u>Caution:</u>").append("div").text(d.data.caution);
             })
             .on('mouseover', function(d){
@@ -1103,7 +1089,8 @@
                     .append('xhtml:div').style("visibility", "visible") ;        
                 infoBox1.append('h3').text(d.data.relName);
                 infoBox1.append('p').text(d.data.description);
-                infoBox1.append('p').html("<u>Benefit:</u>").append("div").text(d.data.benefit);
+                infoBox1.append('p').html("<u>Benefits:</u>").append("div").text(d.data.benefits);
+                infoBox1.append('p').html("<u>Suitable for:</u>").append("div").text(d.data.suitable);
                 infoBox1.append('p').html("<u>Caution:</u>").append("div").text(d.data.caution);
             })  
             .on("mouseout", function(d) {
@@ -1183,7 +1170,8 @@
                     .append('xhtml:div').style("visibility", "visible") ;        
                 infoBox1.append('h3').text(d.data.relName);
                 infoBox1.append('p').text(d.data.description);
-                infoBox1.append('p').html("<u>Benefit:</u>").append("div").text(d.data.benefit);
+                infoBox1.append('p').html("<u>Benefits:</u>").append("div").text(d.data.benefits);
+                infoBox1.append('p').html("<u>Suitable for:</u>").append("div").text(d.data.suitable);
                 infoBox1.append('p').html("<u>Caution:</u>").append("div").text(d.data.caution);
             })
             .on("mouseout", function(){
@@ -1993,7 +1981,7 @@ infoBox.append('h3')
 
 infoBox.append('p')
     .classed('text-center', true)
-    .html("<u>Benefit:</u>").append("div").text(d => d.benefit);
+    .html("<u>Benefits:</u>").append("div").text(d => d.benefit);
 
 infoBox.append('p')
     .classed('text-center', true)
