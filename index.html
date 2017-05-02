@@ -22,8 +22,10 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Theme CSS -->
-    <link href="css/agency.min.css" rel="stylesheet">
-    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.4.5"></script>
+    <link href="css/agency.css" rel="stylesheet">
+    /<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.4.5"></script>
+    <script src="js/d3.min.js"></script>
+    <script src="js/d3-legend.min.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -285,23 +287,48 @@
     <section id="types" class="bg-light-gray">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Types of Yoga</h2>
-                    <h3 class="section-subheading text-muted">Explore different type of Yoga in this section.</h3>
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h2 class="section-heading">Types of Yoga</h2>
+                        <h3 class="section-subheading text-muted" style="margin-bottom: 35px;">Explore different type of Yoga in this section.</h3>
+                    </div>
+                    <div class="div_RootBody" id="radial_chart">
+                    <label>Choose a dimension to view different types of Yoga: </label>
+                    <select class="paceSelection" onchange="doSomething(value)">
+                        <option value="type" selected="selected">Overall Type</option>
+                        <option value="pace">Pace</option>
+                        <option value="routine">Routine</option>
+                    </select>
+                    <div id="explain">Overall type is the type this yoga is commonly known for</div>
+                    <div class="chart"></div>
+                    </div>
                 </div>
             </div>
             <div class="row">
-                <div class="div_RootBody" id="radial_chart">
-              <label>Choose a dimension to view different types of Yoga: </label><select class="paceSelection" onchange="doSomething(value)">
-                                <option value="type" selected="selected">Overall Type</option>
-                                <option value="pace">Pace</option>
-                                  </select>
-              <div class="chart"></div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p class="large text-muted">End of section</p>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <section id="poses" class="bg-white-gray">>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h2 class="section-heading">Types of Poses by Anatomy</h2>
+                        <h3 class="section-subheading text-muted" style="margin-bottom: 35px;">Explore different types of Poses by Anatomy in this section.</h3>
+                    </div>
+                    <div class="tech-stack-container">
+                        <svg id="teck-stack-svg" width="100%" height="700" font-family="sans-serif" font-size="10" text-anchor="middle"/>
+                        <p>Click on a circle to view details about a pose. Have fun ;)</p>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+                    <p class="large text-muted">End of section</p>
                 </div>
             </div>
         </div>
@@ -615,8 +642,9 @@
 
    
 
+    <!-- Types of Yoga Vizualization -->
      <script type="text/javascript">
-      d3.select(self.frameElement).style("height", "800px");
+      d3.select(self.frameElement).style("height", "600px");
       d3.select(self.frameElement).style("width", "800px");
 
       // This example draws a Radial Hub and Spoke Graph on a page with
@@ -626,18 +654,18 @@
       // Data Used for this example...
 
       var focalNode = [
-        {id: "N1", name: "Types of Yoga", type: "Data Type 1"}
+        {id: "N1", name: "What is your type?", type: "Data Type 1"}
       ];
 
       var nodeSet = [
-        {id: "N2", name: "", type: "Hot Yoga", relName: "Bikram Yoga", hlink: "", pace:"fast", description: "done in a hot and humid sauna like room with predefinesd series of poses"},
-        {id: "N3", name: "", type: "Vigorous Yoga", relName: "Power Yoga", hlink: "", pace:"fast",description:"an active and athletic type of yoga"},
-        {id: "N4", name: "", type: "Vigorous Yoga", relName: "Ashtanga Yoga", hlink: "", pace:"fast", description: "vigorous, phyiscally demanding -sequence-style of yoga that links each movement to a breath"},
-        {id: "N5", name: "", type: "Allignment", relName: "Iyengar", hlink: "", pace:"fast", description:"has the nickname Furniture Yoga (Props like blocks, straps, harnesses, and incline boards )"},
-        {id: "N6", name: "", type: "Allignment", relName: "Anusara", hlink: "", pace:"slow", description:"fairly recent, light -hearted"},
-        {id: "N7", name: "", type: "Spiritual", relName: "Kundalini", hlink: "", pace:"slow", description:"Energy flow is directed towards the poses while meditation, breathing techniques, and chanting are incorporated to keep you grounded"},
-        {id: "N8", name: "", type: "Spiritual", relName: "Jivamukti", hlink: "", pace:"slow", description:"spriritual elements chanting meditation phyiscally intense and include insprational theme"},
-        {id: "N9", name: "", type: "Healing", relName: "Yin Yoga", hlink: "", pace:"slow", description:"yoga comes from the Taoist tradition and focuses on passive, seated postures that target the connective tissues in the hips, pelvis and lower spine"},
+        {id: "N2", name: "", type: "Hot", relName: "Bikram", hlink: "", pace:"fast", description: "done in a hot and humid sauna like room with predefinesd series of poses", routine:"yes"},
+        {id: "N3", name: "", type: "Vigorous", relName: "Power", hlink: "", pace:"fast",description:"an active and athletic type of yoga", routine:"no"},
+        {id: "N4", name: "", type: "Vigorous", relName: "Ashtanga", hlink: "", pace:"fast", description: "vigorous, phyiscally demanding -sequence-style of yoga that links each movement to a breath", routine:"no"},
+        {id: "N5", name: "", type: "Allignment", relName: "Iyengar", hlink: "", pace:"fast", description:"has the nickname Furniture Yoga (Props like blocks, straps, harnesses, and incline boards )", routine:"no"},
+        {id: "N6", name: "", type: "Allignment", relName: "Anusara", hlink: "", pace:"slow", description:"fairly recent, light -hearted", routine:"no"},
+        {id: "N7", name: "", type: "Spiritual", relName: "Kundalini", hlink: "", pace:"slow", description:"Energy flow is directed towards the poses while meditation, breathing techniques, and chanting are incorporated to keep you grounded", routine:"yes"},
+        {id: "N8", name: "", type: "Spiritual", relName: "Jivamukti", hlink: "", pace:"slow", description:"spriritual elements chanting meditation phyiscally intense and include insprational theme", routine:"no"},
+        {id: "N9", name: "", type: "Healing", relName: "Yin", hlink: "", pace:"slow", description:"yoga comes from the Taoist tradition and focuses on passive, seated postures that target the connective tissues in the hips, pelvis and lower spine", routine:"no"},
       ];
 
 
@@ -871,7 +899,7 @@
           var focalNodeTextSelector = "." + "focalNodeText";
           var selectedFocalNodeText = d3.selectAll(focalNodeTextSelector);
           //document.writeln(pie3SliceSelector);
-          selectedFocalNodeText.style("fill", "Blue");
+          selectedFocalNodeText.style("fill", "Black");
 
         };
 
@@ -886,8 +914,8 @@
           var focalNodeTextSelector = "." + "focalNodeText";
           var selectedFocalNodeText = d3.selectAll(focalNodeTextSelector);
           //document.writeln(pie3SliceSelector);
-          selectedFocalNodeText.style("font", "Bold 20px Arial")
-          selectedFocalNodeText.style("fill", "DarkBlue");
+          selectedFocalNodeText.style("font", "Bold 12px Arial")
+          selectedFocalNodeText.style("fill", "DarkBlack");
 
         };
 
@@ -903,8 +931,8 @@
           var focalNodeTextSelector = "." + "focalNodeText";
           var selectedFocalNodeText = d3.selectAll(focalNodeTextSelector);
           //document.writeln(pie3SliceSelector);
-          selectedFocalNodeText.style("font", "Bold 16px Arial")
-          selectedFocalNodeText.style("fill", "Blue");
+          selectedFocalNodeText.style("font", "Bold 12px Arial")
+          selectedFocalNodeText.style("fill", "Black");
 
         };
 
@@ -913,16 +941,21 @@
         // Create a hash that maps colors to types...
 
         if (params == "type") {
-           nodeSet.forEach(function(d, i) {
-          color_hash[d.type] = d.type;
+            nodeSet.forEach(function(d, i) {
+            color_hash[d.type] = d.type;
           //document.writeln(color_hash[d.type]);
           });
         } else if (params == "pace") {
-           nodeSet.forEach(function(d, i) {
-          color_hash[d.pace] = d.pace;
+            nodeSet.forEach(function(d, i) {
+            color_hash[d.pace] = d.pace;
           //document.writeln(color_hash[d.type]);
           });
+        } else if (params == "routine") {
+            nodeSet.forEach(function(d, i) {
+            color_hash[d.routine] = d.routine;
+        });
         }
+
        
 
         function keys(obj)
@@ -958,9 +991,13 @@
           d.color = color_hash[d.pace];
           //document.writeln(d.type);
         });
+        } else if (params == "routine") {
+            // Add colors to nodes...
+        nodeSet.forEach(function(d,i) {
+          d.color = color_hash[d.routine];
+          //document.writeln(d.type);
+        });
         }
-
-       
 
         // Define the div for the tooltip
         // var div = d3.select(selectString).append("div") 
@@ -968,14 +1005,14 @@
         //     .style("opacity", 0);
 
 
-        var svgCanvas = d3.select(selectString)
+        var svgCanvas = d3.select(selectString).attr("id","typeSvg")
           .append("svg:svg")
             .data([nodeSet])
             .attr("width", 12000)
             .attr("height", height) 
           .append("svg:g")
             .attr("class", "focalNodeCanvas")
-            .attr("transform", "translate(" + width/2 + "," + height/2 + ")")
+            .attr("transform", "translate(" + width/2 + "," + (height/2.5) + ")")
 
     // Start 1st Pie...
         var arc1 = d3.svg.arc()
@@ -990,7 +1027,6 @@
           .enter().append("svg:g")
             .attr("class", "slice1")
           .append("svg:a")
-            .attr("xlink:href", function(d) { return d.data.hlink; });
 
         arcs1.append("svg:path")
             .attr("fill", function(d) {return d.data.color; } )
@@ -1019,7 +1055,7 @@
             .attr("class","type-tooltip");
 
         var arc2 = d3.svg.arc()
-            .innerRadius(width/8 + 5)
+            .innerRadius(width/12 + 5)
             .outerRadius(width/3.25 - 35);
 
         var pie2 = d3.layout.pie()
@@ -1028,10 +1064,9 @@
         var arcs2 = svgCanvas.selectAll("g.slice2")
             .data(pie2)
           .enter().append("svg:g")
-            .attr("class", "slice2")
-          .append("svg:a")
-            .attr("xlink:href", function(d) { return d.data.hlink; });
+            .attr("class", "slice2");
 
+    
         arcs2.append("svg:path")
             .attr("fill", function(d) {return d.data.color; } )
             .style("fill-opacity", .25)
@@ -1043,20 +1078,39 @@
         var str;
         if (params == "type") {str = d.data.type;}
         else if (params == "pace") {str = d.data.pace;}
+        else if (params == "routine") {str = d.data.routine;}
+
         var strippedString = str.replace(/ /g, "_")
         return "pie2-" + strippedString; })
             .style("stroke", "White")
             .attr("stroke-width", "2")
             .attr("d", arc2)
+            .on("click", function(d) {
+                 // .append("text").html(d.data.relName)
+                info_text.html("");
+                let infoBox1 = svgCanvas.append('foreignObject')
+                    .attr("height", "500").attr("width", "300").attr("x", -1*(width/2 - 800)).attr("y", (-height/9.5*3))
+                    .append('xhtml:div').style("visibility", "visible") ;        
+                infoBox1.append('p').text(d.data.description);
+                infoBox1.append('p').html("<u>Benefit:</u>").append("div").text(d.data.benefit);
+                infoBox1.append('p').html("<u>Caution:</u>").append("div").text(d.data.caution);
+            })
             .on('mouseover', function(d){
-              info_text.html(d.data.relName +  ": <br/> " + d.data.description).call(wrap,200)
-              // info_text.append("text").attr("x", -1*(width/2 - 840)).attr("y", "-110").text(d.data.description).call(wrap, 200);
-              // return tooltip.style("visibility", "visible").style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px");
+                // .append("text").html(d.data.relName)
+                info_text.html("");
+                let infoBox1 = svgCanvas.append('foreignObject')
+                    .attr("height", "500").attr("width", "300").attr("x", -1*(width/2 - 800)).attr("y", (-height/9.5*3))
+                    .append('xhtml:div').style("visibility", "visible") ;        
+                infoBox1.append('h3').text(d.data.relName);
+                infoBox1.append('p').text(d.data.description);
+                infoBox1.append('p').html("<u>Benefit:</u>").append("div").text(d.data.benefit);
+                infoBox1.append('p').html("<u>Caution:</u>").append("div").text(d.data.caution);
             })  
-            
             .on("mouseout", function(d) {
-              return tooltip.style("visibility", "hidden");
+                info_text.html("Mouse over types to know more!!");
+                svgCanvas.selectAll("foreignObject").remove();
             });
+
 
        function wrap(text, width) {
             text.each(function () {
@@ -1092,30 +1146,6 @@
             });
         }
 
-
-    // Add link names to the arcs, translated to the arc centroid and rotated.
-        // arcs2.filter(function(d) {
-        //   return d.endAngle - d.startAngle > .2; }).append("svg:text")
-        //     .attr("dy", ".35em")
-        //     //.attr("dx", "-20px")
-        //     .attr("dx", function(d) {
-        //       var a = angle(d, 0, 0);
-        //       return a < 0 ? "-16px" : "16px";
-        //     })
-        //     .attr("text-anchor", function(d) {
-        //       var a = angle(d, 0, 0);
-        //       return a < 0 ? "start" : "end";
-        //     })
-        //     .attr("transform", function(d) { //set text'ss origin to the centroid
-        //       //we have to make sure to set these before calling arc.centroid
-        //       d.innerRadius = (width); // Set Inner Coordinate
-        //       d.outerRadius = (width); // Set Outer Coordinate
-        //       return "translate(" + arc2.centroid(d) + ")rotate(" + angle(d, -90, 90) + ")";
-        //     })
-        //     .style("fill", "Black")
-        //     .style("font", "normal 10px Arial")
-        //     .text(function(d) { return d.data.type; });
-
     // Start 3rd Pie...
         var arc3 = d3.svg.arc()
             .innerRadius(width/3.25 - 30)
@@ -1127,9 +1157,7 @@
         var arcs3 = svgCanvas.selectAll("g.slice3")
             .data(pie3)
           .enter().append("svg:g")
-            .attr("class", "slice3")
-          .append("svg:a")
-            .attr("xlink:href", function(d) { return d.data.hlink; });
+            .attr("class", "slice3");
 
         arcs3.append("svg:path")
             .attr("fill", function(d) {return d.data.color; } )
@@ -1142,13 +1170,26 @@
         var str;
         if (params == "type") {str = d.data.type;}
         else if (params == "pace") {str = d.data.pace;}
+        else if (params == "routine") {str = d.data.routine;}
         var strippedString = str.replace(/ /g, "_")
         return "pie3-" + strippedString; })
             .attr("stroke-width", "2")
             .style("stroke", "White")
             .attr("d", arc3)
-            .on('mouseover', sliceMouseOver)
-            .on("mouseout", sliceMouseOut);
+            .on('mouseover', function(d){
+                info_text.html("");
+                let infoBox1 = svgCanvas.append('foreignObject')
+                    .attr("height", "500").attr("width", "300").attr("x", -1*(width/2 - 800)).attr("y", (-height/10*3))
+                    .append('xhtml:div').style("visibility", "visible") ;        
+                infoBox1.append('h3').text(d.data.relName);
+                infoBox1.append('p').text(d.data.description);
+                infoBox1.append('p').html("<u>Benefit:</u>").append("div").text(d.data.benefit);
+                infoBox1.append('p').html("<u>Caution:</u>").append("div").text(d.data.caution);
+            })
+            .on("mouseout", function(){
+                info_text.html("Mouse over types to know more!!");
+                svgCanvas.selectAll("foreignObject").remove();
+            });
 
         // Add link names to the arcs, translated to the arc centroid and rotated.
         arcs3.filter(function(d) {
@@ -1170,7 +1211,7 @@
               return "translate(" + arc2.centroid(d) + ")rotate(" + angle(d, -90, 90) + ")";
             })
             .style("fill", "Black")
-            .style("font", "normal 10px Arial")
+            .style("font", "normal 14px Arial")
             .text(function(d) { return d.data.relName; });
 
         // Add node names to the arcs, translated to the arc centroid and rotated.
@@ -1193,6 +1234,7 @@
         var str;
         if (params == "type") {str = d.data.type;}
         else if (params == "pace") {str = d.data.pace;}
+         else if (params == "routine") {str = d.data.routine;}
         var strippedString = str.replace(/ /g, "_")
         return "nodeText-" + strippedString; })
             .attr("transform", function(d) { //set text's origin to the centroid
@@ -1204,10 +1246,8 @@
             .style("fill", "Blue")
             .style("font", "normal 16px Arial")
             .text(function(d) { return d.data.name; })
-            .on('mouseover', sliceMouseOver)
-            .on("mouseout", sliceMouseOut)
-          .append("svg:a")
-            .attr("xlink:href", function(d) { return d.data.hlink; });
+            .on('mouseover',sliceMouseOver)
+            .on("mouseout", sliceMouseOut);
 
         // Updated Angle Calculation Function...
         function angle(d, offset, threshold) {
@@ -1215,18 +1255,11 @@
           return a > threshold ? a - 180 : a;
         }
 
-        //Add text
+        // Add text
         var info_rect = svgCanvas.append("g")
-        info_rect.append("rect").attr("fill", "#d3d3d3").attr("height", "500").attr("width", "300").attr("x", -1*(width/2 - 800)).attr("y", (-height/7*3))
-        var info_text = info_rect.append("text").text("Mouse over types to know more!!").attr("x", -1*(width/2 - 840)).attr("y", "-100")
-        // info_rect.text("Hello")
-                // .append("text").text("Helllo")
-        // <svg xmlns="http://www.w3.org/2000/svg">
-        // <g>
-        //     <rect x="0" y="0" width="100" height="100" fill="red"></rect>
-        //     <text x="0" y="50" font-family="Verdana" font-size="35" fill="blue">Hello</text>
-        // </g>
-        // </svg>
+        info_rect.append("rect").attr("fill", "#d3d3d3").attr("height", "500").attr("width", "320").attr("x", -1*(width/2 - 780)).attr("y", (-height/7*3))
+        var info_text = info_rect.append("text").text("Mouse over types to know more!!").attr("x", -1*(width/2 - 840)).attr("y", "-100").attr("visibility","visible")
+        
 
         // Print Legend Title...
         var text;
@@ -1234,12 +1267,14 @@
            text = "Overall Type";
         } else if (params == "pace") {
             text = "Pace";
+        } else if (params == "routine") {
+            text = "Routine";
         }
         
         svgCanvas.append("text").attr("class","region")
             .text(text)
             .attr("x", -1*(width/2 - 10))
-            .attr("y", (-height/7*3))
+            .attr("y", (-height/10*3))
               .style("fill", "Black")
               .style("font", "bold 16px Arial")
             .attr("text-anchor","start");
@@ -1248,7 +1283,7 @@
         svgCanvas.selectAll("circle")
             .data(sortedKeys).enter().append("svg:circle") // Append circle elements
             .attr("cx", -1*(width/2 - 25))
-            .attr("cy", function(d, i) { return (i*20-height/7*3 + 20); } )
+            .attr("cy", function(d, i) { return (i*20-height/10*3 + 20); } )
             .attr("stroke-width", ".5")
             .style("fill", function(d, i) { return color_hash[d]; })
             .attr("r", 6)
@@ -1262,18 +1297,28 @@
             .on('mouseover', typeMouseOver)
             .on("mouseout", typeMouseOut);
 
+        var defs= svgCanvas.append('defs')
+        defs.append('pattern')
+            .attr('id', 'types-image')
+            .attr('patternUnits', 'userSpaceOnUse')
+            .attr("x", width/2)
+            .attr("y", height/2)
+            .append('svg:image')
+            .attr('xlink:href', 'img/types.png')
+            .attr("x", width/2)
+            .attr("y", height/2);
+
         // Plot the center node circle...
         // Note: Issue w/ selecting circles requires this circle to be drawn after legend bullet circles
         svgCanvas.selectAll("#focalNodeCanvas")
             .data(focalNode)
-      .enter().append("svg:a")
-            .attr("xlink:href", function(d) { return d.hlink; })
+      .enter()
           .append("svg:circle") // Append circle element
             .attr("x", width/2)
             .attr("y", height/2)
             .attr("stroke-width", "8")
             .style("stroke", function(d, i) { return color_hash[d.type]; })
-            .style("fill", function(d, i) { return color_hash[d.type]; })
+            .style("fill", "url(#types-image)")
             .style("fill-opacity", .25)
             .attr("type_value", function(d) {return d.type; } )
             .attr("color_value", function(d, i) { return color_hash[d.pace]; })
@@ -1283,29 +1328,21 @@
             .on("mouseout", focalNodeMouseOut);
 
         // Add focalNode text...
-        svgCanvas.selectAll("a.focalNode_link")
+       svgCanvas.selectAll("a.focalNode_link")
         .data(focalNode)
-        .enter()
-                .append("svg:img")
-                .attr("xlink:src", "img/types.png")
-                .attr("x", "5")
-                .attr("y", "10")
-                .attr("width", "50")
-                .attr("height", "50");
-
-            // .append("text")
-            //   .attr("x", 0)
-            //   .attr("y", 0)
-            //   .attr("dx", 2)
-            //   .attr("dy", 7)
-            //   .attr("type_value", function(d) {return d.type; } )
-            //   .attr("class", "focalNodeText")
-            //   .style("fill", "Blue")
-            //   .style("font", "bold 16px Arial")
-            //   .attr("text-anchor","middle")
-            //   .text(function(d) { return d.name; })
-            //   .on('mouseover', focalNodeMouseOver)
-            //   .on("mouseout", focalNodeMouseOut);
+      .enter().append("text")
+              .attr("x", 0)
+              .attr("y", 0)
+              .attr("dx", 2)
+              .attr("dy", 7)
+              .attr("type_value", function(d) {return d.type; } )
+              .attr("class", "focalNodeText")
+              .style("fill", "black")
+              .style("font", "bold 12px Arial")
+              .attr("text-anchor","middle")
+              .text(function(d) { return d.name; })
+              .on('mouseover', focalNodeMouseOver)
+              .on("mouseout", focalNodeMouseOut);
 
         // Create legend text that acts as label keys...
         svgCanvas.selectAll("a.legend_link")
@@ -1314,7 +1351,7 @@
             .append("text")
               .attr("text-anchor", "center")
               .attr("x", -1*(width/2 - 40))
-              .attr("y", function(d, i) { return (i*20-height/7*3 + 20); } )
+              .attr("y", function(d, i) { return (i*20-height/10*3 + 20); } )
               .attr("dx", 0)
               .attr("dy", "4px") // Controls padding to place text in alignment with bullets
               .text(function(d) { return d;})
@@ -1333,31 +1370,741 @@
 
 
     //Draw charts
-    drawRadialHubAndSpoke("Drawing 1", focalNode, nodeSet, "#radial_chart .chart", "colorScale20", 10, 20, 0, 0, "type");
+    drawRadialHubAndSpoke("Drawing 1", focalNode, nodeSet, "#radial_chart .chart", "colorScale10", 10, 20, 0, 0, "type");
     function doSomething(value) {
-            d3.select("svg").remove();
-           drawRadialHubAndSpoke("Drawing 1", focalNode, nodeSet, "#radial_chart .chart", "colorScale20", 10, 20, 0, 0, value);
+            if (value == "pace") {
+                d3.select("#explain").text("Pace means whether the pace of the yoga contains fast or slow movements.");
+            } else if (value == "type") {
+                d3.select("#explain").text("Overall type is the type this yoga is commonly known for because of a specific characteristic.");
+            } else if (value == "routine") {
+                d3.select("#explain").text("Routine means whether this yoga follows a specific routine of poses and chants.");
+            }
+            
+            d3.select("#typeSvg").remove();
+            d3.select("#radial_chart").append("div").attr("class", "chart")
+           drawRadialHubAndSpoke("Drawing 1", focalNode, nodeSet, "#radial_chart .chart", "colorScale10", 10, 20, 0, 0, value);
+            
     }
     
       
 </script>
 
-<STYLE type="text/css">
-     
-      .type-tooltip {   
-        background-color: rgba(0,0,0,0.5);
-        color: #FFFFFF;
-                  margin: 10px;
-                  padding-right: 10px;
-                  padding-left: 10px; 
-                  padding-top: 10px;
-                  width:200px;
-                  height: 200px;
-            -webkit-border-radius:10px;
-            -moz-border-radius:10px;
-            border-radius:10px;
-      }
-</STYLE>
+
+<script>
+// Based loosely from this D3 bubble graph https://bl.ocks.org/mbostock/4063269
+// And this Forced directed diagram https://bl.ocks.org/mbostock/4062045
+/*eslint-disable indent*/
+let data = [
+    {
+        type: 'Leg', name: 'Cobra', value: 50,
+        icon: 'Cobra',
+        image: 'img/poser1.png',
+        benefit: 'Good for health',
+        caution: 'back problem' 
+    }, 
+    {
+        type: 'Arm', name: 'Cobra1', value: 50,
+        icon: 'Cobra',
+        image: 'img/poser1.png',
+        benefit: 'Good for health',
+        caution: 'back problem' 
+    }, 
+    {
+        type: 'framework', name: 'Ember JS', value: 10,
+        icon: 'img/ember.png',
+        benefit: `
+        Ember.js is an open-source JavaScript web framework, based on the Modelâ€“viewâ€“viewmodel
+        (MVVM) pattern. It allows developers to create scalable single-page web applications by
+        incorporating common idioms and best practices into the framework.
+    `
+    }, {
+        type: 'framework', name: 'ExpressJS', value: 30,
+        icon: 'img/expressjs.png',
+        benefit: `
+        Express.js, or simply Express, is a JavaScript framework designed for building web applications and APIs.
+        It is the de facto server framework for Node.js.
+    `
+    }, /*{
+    type: 'framework', name: 'Foundation', value: 10,
+    icon: '',
+},*/                                        {
+        type: 'framework', name: 'Hexo', value: 50,
+        icon: 'img/hexo.png',
+        benefit: `
+        A fast, simple & powerful blog-aware <strong>static website</strong> generator, powered by Node.js.
+    `
+    }, {
+        type: 'framework', name: 'ReactJS', value: 100,
+        icon: 'img/react.png',
+        benefit: `
+        React (sometimes written React.js or ReactJS) is an open-source JavaScript framework maintained by Facebook for building user interfaces.
+        React processes only user interface in applications and can be used in combination with other JavaScript libraries
+        or frameworks such as Redux, Flux, Backbone...
+    `
+    }, /*{
+    type: 'framework', name: 'SenchaTouch', value: 10,
+    icon: '',
+},*/                                        {
+        type: 'tooling', name: 'Atom', value: 10,
+        icon: 'img/atom.png',
+        benefit: `
+        Atom is a free and open-source text and source code editor for macOS, Linux, and Windows with support
+        for plug-ins written in Node.js, and embedded Git Control, developed by GitHub.
+        Atom is a desktop application built using web technologies.
+    `
+    }, {
+        type: 'tooling', name: 'Google Chrome & Devtool', value: 70,
+        icon: 'img/chrome-devtools.svg',
+        benefit: `
+        <strong>Web development tools (devtool)</strong> allow web developers to test and debug their code.
+        At Nau, we use the one come with Google Chrome to debug our apps. It is one the the most powerful
+        and sophisticated devtool available.
+    `
+    }, {
+        type: 'tooling', name: 'Jenkins CI', value: 30,
+        icon: 'img/jenkins.png',
+        benefit: `
+        Jenkins is an open source automation server. Jenkins helps to automate the non-human part of
+        the whole software development process, with now common things like continuous integration,
+        but by further empowering teams to implement the technical part of a Continuous Delivery.
+    `
+    }, {
+        type: 'tooling', name: 'Sublime Text 3', value: 100,
+        icon: 'img/sublimetext.png',
+        benefit: `
+        Sublime Text 3 is a powerful and cross-platform source code editor. It is well-known for
+        introducing the concept of multi-cursor and lots of text editing command. Besides, its
+        plugin ecosystem is very rich which allows enhancing productivity to the fullest.
+    `
+    }, {
+        type: 'tooling', name: 'Visual Studio Code', value: 50,
+        icon: 'img/vscode.png',
+        benefit: `
+        Visual Studio Code is a cross-platform source code editor developed by Microsoft.
+        It includes support for debugging, embedded Git control, syntax highlighting,
+        intelligent code completion, snippets, and code refactoring. Its extensions eco system is
+        growing quickly and it is becoming the best Front End editors out there.
+    `
+    }, {
+        type: 'tooling', name: 'Performance Tooling', value: 30,
+        icon: 'Performance;Tooling',
+        benefit: `
+        At Nau, web performance is our top priority when development web sites and applications.
+        We're practicing code optimization and Front End delivery optimization from day 1.
+        To measure the resuslts, we use several tools to audit and benchmark our applications,
+        including (but not limit to): Chrome devtool timeline & audit, Google PageSpeed Insights, Web Page Test, Website Grader...
+    `
+    }, {
+        type: 'tooling', name: 'Yeoman generator for Nau Workflow', value: 20,
+        icon: 'img/yeoman.png',
+        benefit: `
+        Yeoman is an open source, command-line interface set of tools mainly used to generate
+        structure and scaffolding for new projects, especially in JavaScript and Node.js.
+        At Nau, we have developed a Yeoman generator that help quickly set up new projects aligned with
+        Nau's conventions and standards.
+    `
+    }, {
+        type: 'tooling', name: 'live-server', value: 30,
+        icon: 'live-server',
+        benefit: `
+        A Node.js-based developer web server for quickly test apps and web pages with some
+        magic of 'auto-reload' on the browser.
+    `
+    }, {
+        type: 'tooling', name: 'PostCSS', value: 30,
+        icon: 'img/postcss.svg',
+        benefit: `
+        PostCSS is a software development tool that uses JavaScript-based plugins to automate routine CSS operations.<br>
+        We use PostCSS mainly for auto-vendor-prefixing, but very soon we'll use it for NextCSS compilation.
+    `
+    }, {
+        type: 'backend', name: 'Elastic Search', value: 10,
+        icon: 'Elastic;Search',
+        benefit: `
+        A specialized database software for high performance search queries.
+    `
+    }, {
+    type: 'backend', name: 'Keystone CMS', value: 50,
+    icon: 'img/keystonejs.png',
+    benefit: `
+        The de-facto CMS system for website built with Node.js. It can be compared with
+        Wordpress of PHP language.
+    `
+}, {
+    type: 'backend', name: 'KoaJS', value: 10,
+    icon: 'img/koajs.png',
+    benefit: `
+        The advanced and improved version of ExpressJS, with leaner middlewares architecture
+        thanks to the avent of ES6 generators.
+    `
+}, {
+    type: 'backend', name: 'Loopback', value: 30,
+    icon: 'img/loopback.svg',
+    benefit: `
+        Powerful API-focused web framework built for Node.js. It feature easy to use configurations
+        and auto API documentation page.
+    `
+}, {
+    type: 'backend', name: 'Restify', value: 20,
+    icon: 'img/restify.png',
+    benefit: `
+        High performance API development framework, built for Node.js. It has some convenient wrapper
+        to automatically generate admin backoffice site and API documentation page.
+    `
+}, {
+    type: 'backend', name: 'MongoDB', value: 70,
+    icon: 'img/mongodb.png',
+    benefit: `
+        The de-facto Database solution for JavaScript and Node.js applications. It is a light weight,
+        high performance NoSQL database and can be used for small and large websites.
+    `
+}, {
+    type: 'backend', name: 'NodeJS', value: 100,
+    icon: 'img/nodejs.svg',
+    benefit: `
+        Node.js is a cross-platform JavaScript runtime environment.
+        Node.js allows creation of high performance and high concurrency websites with smaller footprint compared to
+        other server-side solution. Node.js ecosystem is growing very fast and is trusted by a lot of big companies who
+        are adopting it to enhance current products as well as for new ones.
+    `
+}, {
+    type: 'platform', name: 'Docker Platform', value: 10,
+    icon: 'img/docker.svg',
+    benefit: `
+        Docker is an open-source project that automates the deployment of applications inside software containers.
+        At Nau, we're still learning this technology to later facilitate easy web app deployments.
+    `
+}, {
+    type: 'platform', name: 'MeteorJS', value: 80,
+    icon: 'img/meteor.svg',
+    benefit: `
+        MeteorJS is a free and open-source JavaScript web framework written using Node.js.
+        Meteor allows for rapid prototyping and produces cross-platform (Android, iOS, Web) code.
+        It integrates with MongoDB and uses the Distributed Data Protocol and a publishâ€“subscribe
+        pattern to automatically propagate data changes to clients without requiring the developer
+        to write any synchronization code.
+    `
+}, {
+    type: 'platform', name: 'Phonegap', value: 50,
+    icon: 'img/phonegap.png',
+    benefit: `
+        A platform, library and tool for building hybrid mobile app.
+    `
+}, {
+    type: 'platform', name: 'Reaction Commerce', value: 20,
+    icon: 'img/reactioncommerce.png',
+    benefit: `
+        Reaction Commerce is the first open source, real-time platform to
+        combine the flexibility developers and designers want with the stability
+        and support businesses need. ReactionCommerce is based on MeteorJS platform.
+    `
+}, {
+    type: 'platform', name: 'ReactNative', value: 10,
+    icon: 'img/reactnative.png',
+    benefit: `
+        React Native lets you build mobile apps using only JavaScript.
+        It uses the same design as React, letting us compose a rich
+        mobile UI from declarative components.
+    `
+}, {
+    type: 'platform', name: 'SquareSpace', value: 30,
+    icon: 'img/squarespace.svg',
+    benefit: `
+        Squarespace is a SaaS-based content management system-integrated ecommerce-aware website builder and blogging platform.
+        At Nau, we have built a website for Squarespace using their low-level API which allowed fully customization
+        of the interface and other Front End functionalities.
+    `
+}, {
+    type: 'language', name: 'HTML5 & CSS3', value: 100,
+    icon: 'img/html5-css3.png',
+    benefit: `
+        The languages of the Web Front End. At Nau, they are in our blood and with them we can build
+        world-class websites with any kind of visual effects or designs requested.
+    `
+}, {
+    type: 'language', name: 'JavaScript', value: 100,
+    icon: 'img/javascript.png',
+    benefit: `
+        JavaScript is the heart of modern Web front end development and essential element of any Single Page
+        Applications. In Nau, we invest a good deal in training developers to have good control of this universal language
+        and now caplable of developing full stack websites with only JavaScript.
+    `
+}, {
+    type: 'language', name: 'CSS Next', value: 10,
+    icon: 'img/cssnext.png',
+    benefit: `
+        The CSS language specs of the future but with the help of PostCSS (like Babel for ES6),
+        we can use CSS Next today.
+    `
+}, {
+    type: 'language', name: 'GraphQL', value: 50,
+    icon: 'img/graphql.svg',
+    benefit: `
+        GraphQL is a data query language developed by Facebook publicly released in 2015.
+        It provides an alternative to REST and ad-hoc webservice architectures. In combination
+        with RelayJS, this combo help us reduce the time to develop web apps for weeks.
+    `
+}, {
+    type: 'language', name: 'LESS CSS', value: 20,
+    icon: 'img/less.svg',
+    benefit: `
+        A preprocessor language to be compiled to CSS. This language is not as popular nowadays and we
+        only use them when requested.
+    `
+}, {
+    type: 'language', name: 'SASS (SCSS flavor)', value: 70,
+    icon: 'img/sass.png',
+    benefit: `
+        This is our main CSS preprocessor language helping us lay structured foundation to CSS as well
+        as assisting on writing more convenient BEM anotations.
+    `
+}, {
+    type: 'language', name: 'TypeScript 2', value: 30,
+    icon: 'img/typescript.png',
+    benefit: `
+        The strict-typing flavor of ECMAScript, always requires a compiler to compile to vanilla JavaScript
+        but the type checking and other syntactical sugar are exceptional. Right now, we only use it for
+        Angular 2 projects when needed.
+    `
+}, {
+    type: 'workflow', name: 'code.naustud.io', value: 100,
+    icon: 'img/naustudio.svg',
+    benefit: `
+        A set of guidelines, presets, configs and stadard documentation for Nau developers.
+        Please visit the document site at: <a href='http://code.naustud.io' target='_blank'>code.naustud.io</a>
+    `
+}, {
+    type: 'workflow', name: 'Mobile First', value: 100,
+    icon: 'Mobile First',
+    benefit: `
+        This is one of our most important principle for web and mobile development.
+        More details will be discussed in blog later.
+    `
+}, {
+    type: 'workflow', name: 'BabelJS', value: 50,
+    icon: 'img/babel.png',
+    benefit: `
+        The de-facto tool to work with ECMAScript 6 and ReactJS nowadays.
+    `
+}, /*{
+    type: 'workflow', name: 'Browserify', value: 10,
+    icon: '',
+},*/                                        {
+        type: 'workflow', name: 'CSS BEM Notation', value: 70,
+        icon: 'CSS BEM Notation',
+        benefit: `
+        Our naming standard for CSS, which enhance collaboration, documentation and reusability of
+        CSS rules.
+    `
+    }, {
+        type: 'workflow', name: 'Front End Code Guide', value: 30,
+        icon: 'Front End;Code Guide',
+        benefit: `
+        Based on an existing best practice document for HTML and CSS. We're adopting it as our standards
+        and guideline.
+    `
+    }, {
+        type: 'workflow', name: 'ESLint', value: 20,
+        icon: 'img/eslint.svg',
+        benefit: `
+        The tool to check and validate JavaScript code when we develop and prevent potential issues with code.
+    `
+    }, {
+        type: 'workflow', name: 'Gitflow Workflow', value: 70,
+        icon: 'img/gitflow.png',
+        benefit: `
+        Our code version control tool is Git, and Gitflow is one of its workflow standard which
+        ensure good collaboration and avoid conflict-resolving efforts. For more info, visit: code.naustud.io
+    `
+    }, {
+        type: 'workflow', name: 'GulpJS', value: 50,
+        icon: 'img/gulp.png',
+        benefit: `
+        GulpJS is a task automation tools written for Node.js. It is among the most popular
+        Front End and Node project automation tools nowadays
+    `
+    }, {
+        type: 'workflow', name: 'Nau Code Styles', value: 50,
+        icon: 'Nau Code Styles',
+        benefit: `
+        Based on AirBnB's well-defined JavaScript code styles. Our derivation has some different standards such as
+        TAB indentation. This code style has an accompanied ESLint config.
+    `
+    }, {
+        type: 'workflow', name: 'Stylelint', value: 50,
+        icon: 'img/stylelint.svg',
+        benefit: `
+        Our on-stop tool to validate both CSS and SCSS with a set of conventions and guidelines from our best practice.
+    `
+    }, {
+        type: 'workflow', name: 'SystemJS', value: 20,
+        icon: 'SystemJS',
+        benefit: `
+        A module loader library that come along Angular 2. Its use is scarce, however.
+    `
+    }, {
+        type: 'workflow', name: 'Webpack', value: 30,
+        icon: 'img/webpack.svg',
+        benefit: `
+        A module bundler library that is becoming de-facto tool to use in ReactJS or SPA apps nowadays.
+    `
+    }, {
+        type: 'legacy', name: 'AngularJS 1', value: 10,
+        icon: 'img/angular1.png',
+        benefit: `
+        Angular 1. Deprecated
+    `
+    }, {
+    type: 'legacy', name: 'Backbone', value: 30,
+    icon: 'img/backbone.png',
+    benefit: `
+        A Model-View library. Deprecated
+    `
+}, {
+    type: 'legacy', name: 'Grunt & Automation Stack', value: 30,
+    icon: 'img/grunt.svg',
+    benefit: `
+        Grunt task automation tool. Deprecated
+    `
+}, {
+    type: 'legacy', name: 'jQuery', value: 50,
+    icon: 'img/jquery.png',
+    benefit: `
+        Deprecated, because <a href='http://youmightnotneedjquery.com/' target='_blank'>youmightnotneedjquery.com</a>
+    `
+}, {
+    type: 'legacy', name: 'RequireJS & AMD', value: 30,
+    icon: 'img/requirejs.svg',
+    benefit: `
+        AMD module loader. Deprecated and replaced by ES module and Webpack.
+    `
+}, {
+    type: 'legacy tooling', name: 'Browser Sync', value: 40,
+    icon: 'Browser Sync',
+    benefit: `
+        Web development server popular among gulp/grunt web apps. No deprecated and replaced by live-server
+        or webpackDevServer.
+    `
+}, {
+    type: 'legacy tooling', name: 'Git Pre-commit', value: 30,
+    icon: 'Git;Pre-commit',
+    benefit: `
+        Pre-commit hook for git, now deprecated due to slow commit time. Code validation should be done
+        in the code editor.
+    `
+}, {
+    type: 'legacy tooling', name: 'http-server', value: 20,
+    icon: 'http-server',
+    benefit: `
+        A quick test web server based on Node.js, deprecated and replaced by live-server.
+    `
+}, {
+    type: 'legacy tooling', name: 'LiveReload', value: 20,
+    icon: 'Live;Reload',
+    benefit: `
+        A propritery auto-reload solution for web developers, now deprecated in favor of live-server and
+        hot module reload in Webpack.
+    `
+}];
+/*eslint-enable indent*/
+/*global d3*/
+let svg = d3.select('#teck-stack-svg');
+let width = svg.property('clientWidth'); // get width in pixels
+let height = +svg.attr('height');
+let centerX = width * 0.5;
+let centerY = height * 0.5;
+let strength = 0.05;
+let focusedNode;
+console.log('width', width);
+
+let format = d3.format(',d');
+
+let scaleColor = d3.scaleOrdinal(d3.schemeCategory20);
+
+// use pack to calculate radius of the circle
+let pack = d3.pack()
+    .size([width, height ])
+    .padding(1.5);
+
+let forceCollide = d3.forceCollide(d => d.r + 1);
+
+// use the force
+let simulation = d3.forceSimulation()
+    // .force('link', d3.forceLink().id(d => d.id))
+    .force('charge', d3.forceManyBody())
+    .force('collide', forceCollide)
+    // .force('center', d3.forceCenter(centerX, centerY))
+    .force('x', d3.forceX(centerX ).strength(strength))
+    .force('y', d3.forceY(centerY ).strength(strength));
+
+// reduce number of circles on mobile screen due to slow computation
+if ('matchMedia' in window && window.matchMedia('(max-device-width: 767px)').matches) {
+    data = data.filter(el => {
+        return el.value >= 50;
+    });
+}
+
+let root = d3.hierarchy({ children: data })
+    .sum(d => d.value);
+
+// we use pack() to automatically calculate radius conveniently only
+// and get only the leaves
+let nodes = pack(root).leaves().map(node => {
+    // console.log('node:', node.x, (node.x - centerX) * 2);
+    const data = node.data;
+    return {
+        x: centerX + (node.x - centerX) * 3, // magnify start position to have transition to center movement
+        y: centerY + (node.y - centerY) * 3,
+        r: 0, // for tweening
+        radius: node.r, //original radius
+        id: data.type+ '.' + (data.name.replace(/\s/g, '-')),
+        type: data.type,
+        name: data.name,
+        value: data.value,
+        icon: data.icon,
+        image: data.image,
+        benefit: data.benefit,
+        caution: data.caution
+    };
+});
+simulation.nodes(nodes).on('tick', ticked);
+
+svg.style('background-color', '#eee');
+let node = svg.selectAll('.node')
+    .data(nodes)
+    .enter().append('g')
+    .attr('class', 'node')
+    .call(d3.drag()
+        .on('start', (d) => {
+            if (!d3.event.active) { simulation.alphaTarget(0.2).restart(); }
+            d.fx = d.x;
+            d.fy = d.y;
+        })
+        .on('drag', (d) => {
+            d.fx = d3.event.x;
+            d.fy = d3.event.y;
+        })
+        .on('end', (d) => {
+            if (!d3.event.active) { simulation.alphaTarget(0); }
+            d.fx = null;
+            d.fy = null;
+        }));
+
+node.append('circle')
+    .attr('id', d => d.id)
+    .attr('r', 0)
+    .style('fill', d => scaleColor(d.type))
+    .transition().duration(2000).ease(d3.easeElasticOut)
+        .tween('circleIn', (d) => {
+            let i = d3.interpolateNumber(0, d.radius);
+            return (t) => {
+                d.r = i(t);
+                simulation.force('collide', forceCollide);
+            };
+        });
+
+node.append('clipPath')
+    .attr('id', d => `clip-${d.id}`)
+    .append('use')
+    .attr('xlink:href', d => `#${d.id}`);
+
+// display text as circle icon
+node.filter(d => !String(d.icon).includes('img/'))
+    .append('text')
+    .classed('node-icon', true)
+    .attr('clip-path', d => `url(#clip-${d.id})`)
+    .selectAll('tspan')
+    .data(d => d.icon.split(';'))
+    .enter()
+        .append('tspan')
+        .attr('x', 0)
+        .attr('y', (d, i, nodes) => (13 + (i - nodes.length / 2 - 0.5) * 10))
+        .text(name => name);
+
+// display image as circle icon
+// node.append('image')
+//  .classed('node-icon', true)
+//  .attr('clip-path', d => `url(#clip-${d.id})`)
+//  .attr('xlink:href', d => d.image)
+//  .attr('x', d => -d.radius * 0.7)
+//  .attr('y', d => -d.radius * 0.7)
+//  .attr('height', d => d.radius * 2 * 0.7)
+//  .attr('width', d => d.radius * 2 * 0.7);
+
+node.append('title')
+    .text(d => (d.type + '::' + d.name + '\n' + format(d.value)));
+
+let legendOrdinal = d3.legendColor()
+    .scale(scaleColor)
+    .shape('circle');
+
+// legend 1
+svg.append('g')
+ .classed('legend-color', true)
+ .attr('text-anchor', 'start')
+ .attr('transform', 'translate(20,30)')
+ .style('font-size', '12px')
+ .call(legendOrdinal);
+
+// svg.append('image')
+//     .classed('legend-color', true)
+//     .attr('text-anchor', 'start')
+//     .attr("xlink:href", "img/anatomy-legend.png")
+//     .attr("x", 0)
+//     .attr("y", -175)
+//     .attr("width", 300)
+//     .attr("height", 600);
+
+// let sizeScale = d3.scaleOrdinal()
+//  .domain(['less use', 'more use'])
+//  .range([5, 10] );
+
+// let legendSize = d3.legendSize()
+//  .scale(sizeScale)
+//  .shape('circle')
+//  .shapePadding(10)
+//  .labelAlign('end');
+
+// legend 2
+// svg.append('g')
+//  .classed('legend-size', true)
+//  .attr('text-anchor', 'start')
+//  .attr('transform', 'translate(150, 25)')
+//  .style('font-size', '12px')
+//  .call(legendSize);
+
+
+
+let infoBox = node.append('foreignObject')
+    .classed('circle-overlay hidden', true)
+    .attr('x', -350 * 0.5 * 0.8)
+    .attr('y', -350 * 0.5 * 0.8)
+    .attr('height', 350 * 0.8)
+    .attr('width', 350 * 0.8)
+        .append('xhtml:div')
+        .classed('circle-overlay__inner', true);
+
+infoBox.append('img').attr('src', d=>d.image).attr('height', 350 * 0.3).attr('width', 350 * 0.7)
+
+infoBox.append('h3')
+    .classed('text-center', true)
+    .text(d => d.name);
+
+
+infoBox.append('p')
+    .classed('text-center', true)
+    .html("<u>Benefit:</u>").append("div").text(d => d.benefit);
+
+infoBox.append('p')
+    .classed('text-center', true)
+    .html("<u>Caution:</u>").append("div").text(d => d.caution);
+
+node.on('click', (currentNode) => {
+    d3.event.stopPropagation();
+    console.log('currentNode', currentNode);
+    let currentTarget = d3.event.currentTarget; // the <g> el
+
+    if (currentNode === focusedNode) {
+        // no focusedNode or same focused node is clicked
+        return;
+    }
+    let lastNode = focusedNode;
+    focusedNode = currentNode;
+
+    simulation.alphaTarget(0.2).restart();
+    // hide all circle-overlay
+    d3.selectAll('.circle-overlay').classed('hidden', true);
+    d3.selectAll('.node-icon').classed('node-icon--faded', false);
+
+    // don't fix last node to center anymore
+    if (lastNode) {
+        lastNode.fx = null;
+        lastNode.fy = null;
+        node.filter((d, i) => i === lastNode.index)
+            .transition().duration(2000).ease(d3.easePolyOut)
+            .tween('circleOut', () => {
+                let irl = d3.interpolateNumber(lastNode.r, lastNode.radius);
+                return (t) => {
+                    lastNode.r = irl(t);
+                };
+            })
+            .on('interrupt', () => {
+                lastNode.r = lastNode.radius;
+            });
+    }
+
+    // if (!d3.event.active) simulation.alphaTarget(0.5).restart();
+
+    d3.transition().duration(2000).ease(d3.easePolyOut)
+        .tween('moveIn', () => {
+            console.log('tweenMoveIn', currentNode);
+            let ix = d3.interpolateNumber(currentNode.x, centerX);
+            let iy = d3.interpolateNumber(currentNode.y, centerY);
+            let ir = d3.interpolateNumber(currentNode.r, centerY * 0.5);
+            return function (t) {
+                // console.log('i', ix(t), iy(t));
+                currentNode.fx = ix(t);
+                currentNode.fy = iy(t);
+                currentNode.r = ir(t);
+                simulation.force('collide', forceCollide);
+            };
+        })
+        .on('end', () => {
+            simulation.alphaTarget(0);
+            let $currentGroup = d3.select(currentTarget);
+            $currentGroup.select('.circle-overlay')
+                .classed('hidden', false);
+            $currentGroup.select('.node-icon')
+                .classed('node-icon--faded', true);
+
+        })
+        .on('interrupt', () => {
+            console.log('move interrupt', currentNode);
+            currentNode.fx = null;
+            currentNode.fy = null;
+            simulation.alphaTarget(0);
+        });
+
+});
+
+// blur
+d3.select(document).on('click', () => {
+    let target = d3.event.target;
+    // check if click on document but not on the circle overlay
+    if (!target.closest('#circle-overlay') && focusedNode) {
+        focusedNode.fx = null;
+        focusedNode.fy = null;
+        simulation.alphaTarget(0.2).restart();
+        d3.transition().duration(2000).ease(d3.easePolyOut)
+            .tween('moveOut', function () {
+                console.log('tweenMoveOut', focusedNode);
+                let ir = d3.interpolateNumber(focusedNode.r, focusedNode.radius);
+                return function (t) {
+                    focusedNode.r = ir(t);
+                    simulation.force('collide', forceCollide);
+                };
+            })
+            .on('end', () => {
+                focusedNode = null;
+                simulation.alphaTarget(0);
+            })
+            .on('interrupt', () => {
+                simulation.alphaTarget(0);
+            });
+
+        // hide all circle-overlay
+        d3.selectAll('.circle-overlay').classed('hidden', true);
+        d3.selectAll('.node-icon').classed('node-icon--faded', false);
+    }
+});
+
+function ticked() {
+    node
+        .attr('transform', d => `translate(${d.x},${d.y})`)
+        .select('circle')
+            .attr('r', d => d.r);
+}
+</script>
 </body>
 
 </html>
