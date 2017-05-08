@@ -287,6 +287,7 @@ section h2.section-heading {
   margin-top: 46px;
   margin-bottom: 15px;
   color:white;
+  background-color: "#F3B12B";
 }
 section h3.section-subheading {
   font-size: 16px;
@@ -580,7 +581,7 @@ aside.clients img {
 }
 section#contact {
   background-color: #222222;
-  background-image: url('../img/map-image.png');
+  /*background-image: url('../last.jpeg');*/
   background-position: center;
   background-repeat: no-repeat;
 }
