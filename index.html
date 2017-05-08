@@ -1861,6 +1861,13 @@ svg.append('g')
  .style('font-size', '12px')
  .call(legendOrdinal);
 
+ svg.append('text')
+ .classed('text', true)
+ .attr('text-anchor', 'start')
+ .attr('transform', 'translate(150, 25)')
+ .style('font-size', '16px')
+ .text("Explore different poses by clicking on bubbles!!");
+
 }
 
 
@@ -1893,13 +1900,8 @@ drawViz("all");
 //  .shapePadding(10)
 //  .labelAlign('end');
 
-legend 2
-svg.append('g')
- .classed('text', true)
- .attr('text-anchor', 'start')
- .attr('transform', 'translate(150, 25)')
- .style('font-size', '12px')
- .text("Explore different poses by clicking on bubbles");
+// legend 2
+
 
 
 
