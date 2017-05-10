@@ -312,12 +312,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Credits:</h2>
+                    <h2 style="color:grey">Credits:</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12" >
-                    <p>This website is part of final project for Information Visualization, a course at the UC Berkeley School of Information. Team: Yoga (Neera Grover, Shrestha, Divya Garg). All information about Yoga history, types and poses are taken from various sources like YogaJournal, Wikipedia.</p>
+                    <p style="color:grey">This website is part of final project for Information Visualization, a course at the UC Berkeley School of Information. Team: Yoga (Neera Grover, Shrestha, Divya Garg). All information about Yoga history, types and poses are taken from various sources like YogaJournal, Wikipedia.</p>
                 </div>
             </div>
         </div>
@@ -1853,13 +1853,22 @@ let legendOrdinal = d3.legendColor()
 
 // legend 1
 
+svg.append('image')
+    .classed('legend-color', true)
+    .attr('text-anchor', 'start')
+    .attr("xlink:href", "img/anatomy-legend.png")
+    .attr("x", -100)
+    .attr("y", -175)
+    .attr("width", 300)
+    .attr("height", 600);
 
-svg.append('g')
- .classed('legend-color', true)
- .attr('text-anchor', 'start')
- .attr('transform', 'translate(20,30)')
- .style('font-size', '12px')
- .call(legendOrdinal);
+
+// svg.append('g')
+//  .classed('legend-color', true)
+//  .attr('text-anchor', 'start')
+//  .attr('transform', 'translate(20,30)')
+//  .style('font-size', '12px')
+//  .call(legendOrdinal);
 
  svg.append('text')
  .classed('text', true)
@@ -1881,14 +1890,7 @@ drawViz("all");
 
 
 
-// svg.append('image')
-//     .classed('legend-color', true)
-//     .attr('text-anchor', 'start')
-//     .attr("xlink:href", "img/anatomy-legend.png")
-//     .attr("x", 0)
-//     .attr("y", -175)
-//     .attr("width", 300)
-//     .attr("height", 600);
+
 
 // let sizeScale = d3.scaleOrdinal()
 //  .domain(['less use', 'more use'])
