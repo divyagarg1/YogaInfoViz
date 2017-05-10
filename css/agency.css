@@ -14,7 +14,7 @@ body {
   color: #fed136;
 }
 p {
-  font-size: 14px;
+  font-size: 18px;
   line-height: 1.75;
 }
 p.large {
@@ -290,7 +290,7 @@ section h2.section-heading {
   background-color: "#F3B12B";
 }
 section h3.section-subheading {
-  font-size: 16px;
+  font-size: 25px;
   font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: none;
   font-weight: 400;
